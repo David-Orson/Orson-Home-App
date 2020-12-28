@@ -13,11 +13,11 @@ const Login = () => {
 
   const handleChange = (e) => {
     switch (e.target.name) {
-      case 'password':
-        setPassword(e.target.value)
-      return
       case 'email':
         setEmail(e.target.value)
+      return
+      case 'password':
+        setPassword(e.target.value)
       return
     }
   }
