@@ -6,6 +6,7 @@ import store from "./redux/store";
 
 import Home from './pages/Home';
 import Login from './pages/Login';
+import Signup from './pages/Signup';
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
       <Router>
         <Home path='/' />
         <Login path='/login' />
+        <Signup path='/signup' />
       </Router>
     </Provider>
   )

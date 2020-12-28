@@ -34,6 +34,9 @@ const Login = () => {
       <a href="/">
         Home
       </a>
+      <a href="/signup">
+        Signup
+      </a>
     </div>
   )
 }
