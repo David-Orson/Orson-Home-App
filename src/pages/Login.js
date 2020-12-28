@@ -7,8 +7,13 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
 
-  const handleSubmit = () => {
-
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (email.includes('@')) {
+      console.log('email')
+    } else {
+      console.log('handle')
+    }
   }
 
   const handleChange = (e) => {
@@ -26,10 +31,13 @@ const Login = () => {
     <div className="Login">
       <h1>Login</h1>
       <form className="form" onSubmit={handleSubmit} >
-        <label>Email</label>
+        <label>Username or Email</label>
         <input name="email" type="text" value={email} onChange={handleChange} />
         <label>Password</label>
         <input name="password" type="password" value={password} onChange={handleChange} />
+        <button>
+          submit
+        </button>
       </form>
       <a href="/">
         Home
