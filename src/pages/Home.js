@@ -3,7 +3,13 @@ import React from 'react';
 const Home = () => {
   return (
     <div>
-      Home
+      <p>
+        Home
+      </p>
+      <a href="/login">
+        Login
+      </a>
+      
     </div>
   )
 }
