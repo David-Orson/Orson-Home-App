@@ -21,7 +21,7 @@ exports.signup = async (req, res) => {
       handle: req.body.handle,
     };
 
-    const { valid, errors } = validateSignupData(newUser);
+    /* const { valid, errors } = validateSignupData(newUser);
 
     if (!valid) return res.status(400).json(errors);
 
@@ -29,9 +29,11 @@ exports.signup = async (req, res) => {
     const doc = await db.doc(`/users/${newUser.handle}`).get();
 
     const creds = doc.exists ? res.status(400).json({ handle: "This username is unavailable" })
-    : await firebase.auth().createUserWithEmailAndPassword(newUser.email, newUser.password);
+    : await  */ const creds = await firebase.auth().createUserWithEmailAndPassword(newUser.email, newUser.password);
 
-    userId = creds.user.uid;
+    return res.status(201).json({ message: `user  signed up successfully` });
+
+    /* userId = creds.user.uid;
 
     const idToken = await creds.user.getIdToken()
 
@@ -48,11 +50,11 @@ exports.signup = async (req, res) => {
 
     if (done) {
       return res.status(201).json({ token }); 
-    }
+    } */
 
   } catch (err) {
     console.error(err);
-    if (rr.code === "auth/email-already-in-use") {
+    if (err.code === "auth/email-already-in-use") {
       return res.status(400).json({ email: "Email is already in use "});
     } else {
       return res.status(500).json({ general: "Something went wrong, please try again" });
