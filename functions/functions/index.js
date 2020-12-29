@@ -1,6 +1,6 @@
 const functions = require('firebase-functions');
 const app = require("express")();
-const FBAuth = require("./utility/fbAuth");
+const FBAuth = require("./utility/FBAuth");
 
 const cors = require("cors");
 app.use(cors());
