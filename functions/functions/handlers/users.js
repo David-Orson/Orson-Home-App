@@ -21,36 +21,11 @@ exports.signup = async (req, res) => {
       handle: req.body.handle,
     };
 
-    /* const { valid, errors } = validateSignupData(newUser);
+    const data = await firebase
+    .auth()
+    .createUserWithEmailAndPassword(newUser.email, newUser.password);
 
-    if (!valid) return res.status(400).json(errors);
-
-    let token, userId;
-    const doc = await db.doc(`/users/${newUser.handle}`).get();
-
-    const creds = doc.exists ? res.status(400).json({ handle: "This username is unavailable" })
-    : await  */ const creds = await firebase.auth().createUserWithEmailAndPassword(newUser.email, newUser.password);
-
-    return res.status(201).json({ message: `user  signed up successfully` });
-
-    /* userId = creds.user.uid;
-
-    const idToken = await creds.user.getIdToken()
-
-    token = idToken
-
-    const userCredentials = {
-      handle: newUser.handle,
-      email: newUser.email,
-      createdAt: new Date().toISOString(),
-      userId,
-    };
-
-    const done = await db.doc(`/users/${newUser.handle}`).set(userCredentials);
-
-    if (done) {
-      return res.status(201).json({ token }); 
-    } */
+    return res.status(201).json({ message: `user ${data.uid} signed up successfully` });
 
   } catch (err) {
     console.error(err);
